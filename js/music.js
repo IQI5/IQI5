@@ -113,3 +113,13 @@ Music.prototype.stop = function(){
 Music.prototype.jump = function(ratio){
   this.index = parseInt(ratio * this.totol_index);
 }
+
+Music.prototype.test = function(single){
+  var _self = this;
+  this.player.src = "audio/" + this.type + "/" + single[0] + "_" + single[1] + ".ogg";
+  this.player.play();
+  var timeout = setTimeout(function(){
+    _self.player.pause();
+    _self.player.currentTime = 0;
+  }, this.beat * single[2]);
+}
