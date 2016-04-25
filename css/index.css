@@ -1,0 +1,106 @@
+*{
+	padding: 0; 
+	margin: 0; 
+}
+
+body{ 
+	background-color: #3c3c3c; 
+}
+
+ul{
+	list-style: none;
+}
+
+li{ 
+	display: inline-block; 
+	width: 30px; 
+	height: 30px; 
+	line-height: 30px;
+	margin: 20px;
+	color: #fff;
+	font-weight: bold;
+	background-color: #3c3c3c; 
+}
+
+li.highVoice{
+	background-color: #930000;
+	width: 34px; 
+	height: 34px; 
+	line-height: 34px;
+	margin: 18px;
+}
+
+li.middleVoice{
+	background-color: #eac100;
+	width: 34px; 
+	height: 34px; 
+	line-height: 34px;
+	margin: 18px;
+}
+
+li.lowVoice{
+	background-color: #0072e3;
+	width: 34px; 
+	height: 34px; 
+	line-height: 34px;
+	margin: 18px;
+}
+
+.header{
+	width: 80%;
+	height: 100px;
+	margin: 30px auto 0;
+	border: 2px inset #272727;
+	background-color: #bebebe;
+}
+
+.melody{
+	width: 80%;
+	height: 300px;
+	max-height: 300px;
+	overflow-y: auto;
+	margin: 20px auto 0;
+	border: 2px inset #272727;
+	background-color: #bebebe;
+}
+
+#music_number{
+	margin: 20px;
+	line-height: 2em;
+}
+
+#music_number span{
+	display: inline-block;
+	position: relative;
+	padding: 0 10px;
+}
+
+#music_number b{
+	padding: 0 10px;
+}
+
+#music_number span div.high{
+	position: absolute;
+	line-height: 1em;
+	top: -7px;
+	left: 11px;
+}
+
+#music_number span div.low{
+	position: absolute;
+	line-height: 1em;
+	top: 12px;
+	left: 11px;
+}
+
+.keys{
+	width: 80%;
+	margin: 20px auto 0;
+	border: 2px inset #272727;
+	text-align: center;
+	background-color: #bebebe;
+}
+
+.tip{
+	margin-bottom: 20px;
+}
