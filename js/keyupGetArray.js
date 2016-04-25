@@ -5,7 +5,7 @@
     var kDown, kUp, tOfDuration;
     var json = {}, arr=[];
 
-    var key = {
+    var key = {  //按键状态，执行时间，开始时间，结束时间
         state: false,
         span: 0,
         start: 0,
@@ -23,9 +23,9 @@
     //按键抬起时，查看键值，及按下的持续时间
     document.onkeyup = function(e) {
         var ev = e || window.event;
-        key.state = false;
+        key.state = false;  //keyup时改变按键状态
         key.end = new Date();
-        key.span = key.end - key.start;
+        key.span = key.end - key.start;  //按键持续时间
         console.log(key.span);
 
         switch(ev.keyCode) {
@@ -102,6 +102,7 @@
         return arr;
     };
 
+    //按键对象所带属性，按键名，持续时间
     function addObj(node) {
         json = {};
         json.mNotation = node;
