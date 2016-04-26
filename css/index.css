@@ -72,7 +72,7 @@ ul{
 	background-color: #3c3c3c; 
 }
 
-li.highVoice{
+#ul-keys li.highVoice{
 	background-color: #930000;
 	width: 34px; 
 	height: 34px; 
@@ -80,7 +80,7 @@ li.highVoice{
 	margin: 18px;
 }
 
-li.middleVoice{
+#ul-keys li.middleVoice{
 	background-color: #eac100;
 	width: 34px; 
 	height: 34px; 
@@ -88,7 +88,7 @@ li.middleVoice{
 	margin: 18px;
 }
 
-li.lowVoice{
+#ul-keys li.lowVoice{
 	background-color: #0072e3;
 	width: 34px; 
 	height: 34px; 
