@@ -11,7 +11,7 @@ var header = document.getElementsByClassName('header')[0],
     melody = document.getElementsByClassName('melody')[0];
 var madeflag = true;
 
-var musicCache;  // ajax拉取的music数据缓存 数组
+var musicCache;  // 数组  ajax拉取的music数据缓存  
 
 makeMusic.addEventListener('click', function() {
     if(madeflag) {
@@ -27,7 +27,6 @@ makeMusic.addEventListener('click', function() {
 }), false;
 
 
-
 lookMusic.addEventListener('click', function() {
     melody.innerHTML = '';
     melody.innerHTML = '<ul><li class="list-title">作者</li><li class="list-title">歌曲名</li>' +
@@ -37,20 +36,33 @@ lookMusic.addEventListener('click', function() {
         musicCache = JSON.parse(res);
         console.log(res); 
         var res = JSON.parse(res);
-        // console.log(JSON.parse(res[0].melody));
         var fragment = document.createDocumentFragment();
         for(var i = 0, len = res.length; i < len; i++) {
             var ul = document.createElement('ul');
             ul.className = 'listBox';
             ul.setAttribute('data-id', i);
             var str = '<li class="music-list">'+res[i].author+'</li><li class="music-list">'+res[i].name+'</li>' +
-                '<li class="music-list">'+JSON.parse(res[i].melody).length+'</li><li class="music-list">'+res[i].description+'</li>';
+                '<li class="music-list">'+JSON.parse(res[i].melody).length+'</li><li class="music-list">'+res[i].description+'</li><li class="music-list"><div class="play-music-btn"><div></div></div></li>';
+
             ul.innerHTML = str;
             fragment.appendChild(ul);
         }
         melody.appendChild(fragment);
+
+        // 点击音乐播放事件
+        eventUtil.delegate(melody, 'music-list', 'click', function(e) {
+            var e = e || window.event;
+            var trg = e.target || e.srcElement;
+            var id = trg.parentElement.getAttribute('data-id');
+            console.log(trg.parentElement);
+            console.log(musicCache);
+
+            var this_music = new Music(musicCache[id].name, "piano", JSON.parse(musicCache[id].melody), 500, audio);
+            this_music.play();
+        }); 
     });
 
+   
 }, false);
 
 

@@ -8,15 +8,20 @@ var header = document.getElementsByClassName('header')[0],
     uploadMusic = document.getElementsByClassName('upload_music')[0],
     lookMusic = document.getElementsByClassName('look_music')[0],
     shareMusic = document.getElementsByClassName('share_music')[0],
+    melody = document.getElementsByClassName('melody')[0],
     cancel = document.getElementById('cancel'),
     submit = document.getElementById('submit'),
     save = document.getElementById('save');
 
+
 var madeflag = true;
+var musicCache;  // 数组  ajax拉取的music数据缓存  
+
 
 makeMusic.addEventListener('click', function() {
     if(madeflag) {
         //调用事件函数
+        //.innerHTML = '';
         documentEvent();
         saveMusic.disabled = false;
         madeflag = false;
@@ -37,23 +42,41 @@ saveMusic.addEventListener('click', function() {
 }, false);
 
 lookMusic.addEventListener('click', function() {
-    musicNumber.innerHTML = '';
-    musicNumber.innerHTML = '<ul><li class="list-title">作者:</li><li class="list-title">歌曲名:</li>' +
-        '<li class="list-title">音乐时长:</li><li class="list-title">歌曲信息:</li></ul>';
+    melody.innerHTML = '';
+    melody.innerHTML = '<ul><li class="list-title">作者</li><li class="list-title">歌曲名</li>' +
+        '<li class="list-title">音乐时长</li><li class="list-title">歌曲信息</li></ul>';
 
-    $.get('/getAllMusic', function(res) {
+    ajax.getAllMusic(function(res) {
+        musicCache = JSON.parse(res);
+        console.log(res); 
+        var res = JSON.parse(res);
         var fragment = document.createDocumentFragment();
         for(var i = 0, len = res.length; i < len; i++) {
             var ul = document.createElement('ul');
             ul.className = 'listBox';
+            ul.setAttribute('data-id', i);
             var str = '<li class="music-list">'+res[i].author+'</li><li class="music-list">'+res[i].name+'</li>' +
-                '<li class="music-list">'+res[i].melody.length+'</li><li class="music-list">'+res[i].description+'</li>';
+                '<li class="music-list">'+JSON.parse(res[i].melody).length+'</li><li class="music-list">'+res[i].description+'</li><li class="music-list"><div class="play-music-btn"><div></div></div></li>';
+
             ul.innerHTML = str;
             fragment.appendChild(ul);
         }
         melody.appendChild(fragment);
+
+        // 点击音乐播放事件
+        eventUtil.delegate(melody, 'music-list', 'click', function(e) {
+            var e = e || window.event;
+            var trg = e.target || e.srcElement;
+            var id = trg.parentElement.getAttribute('data-id');
+            console.log(trg.parentElement);
+            console.log(musicCache);
+
+            var this_music = new Music(musicCache[id].name, "piano", JSON.parse(musicCache[id].melody), 500, audio);
+            this_music.play();
+        }); 
     });
 
+   
 }, false);
 
 cancel.addEventListener('click', function() {
@@ -85,11 +108,13 @@ submit.addEventListener('click', function() {
         "name": name,
         "author": author,
         "description": description,
-        "melody": arr,
+        "melody": JSON.stringify(arr),
         "createTime": date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
     };
     console.log(json);
-    ajax.uploadMusic(json);
+    ajax.uploadMusic(json, function(res) {
+        console.log(res);
+    });
 
 }, false);
 

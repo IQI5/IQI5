@@ -65,7 +65,7 @@ function ajaxUtil(url, options) {
         } else if (xmlhttp.readyState == 4 && xmlhttp.status == 404) {
              if (options.onfail) {
                  options.onfail();
-             }
+            }
         }
     } 
 }
