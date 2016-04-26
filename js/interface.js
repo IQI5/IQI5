@@ -9,45 +9,44 @@ var header = document.getElementsByClassName('header')[0],
     lookMusic = document.getElementsByClassName('look_music')[0],
     shareMusic = document.getElementsByClassName('share_music')[0];
 
-addEvent(makeMusic, 'click', function() {
-    musicNumber.innerHTML = '';
-});
+var madeflag = true;
 
-addEvent(saveMusic, 'click', function() {
-
-});
-
-addEvent(uploadMusic, 'click', function() {
-
-});
-
-addEvent(lookMusic, 'click', function() {
-    musicNumber.innerHTML = '';
-    musicNumber.innerHTML = '<ul><li>作者：' + 'aa' + '</li><li>歌曲名：' + 'bb' + '</li><li>音乐时长：' + 'cc' + '</li><li>歌曲信息：' + 'dd' + '</li></ul>';
-
-});
-
-addEvent(shareMusic, 'click', function() {
-
-});
-
-function addEvent(obj, ev, fn) {
-    if (obj.attachEvent) {
-        obj.attachEvent('on' + ev, fn);
+makeMusic.addEventListener('click', function() {
+    if(madeflag) {
+        //调用事件函数
+        documentEvent();
+        madeflag = false;
+        this.innerHTML = '<span>重新制作</span>';
     }
     else {
-        obj.addEventListener(ev, fn);
+        music_number.innerHTML = '';
     }
-}
 
-function addEvent1(obj, ev, fn) {
-    if (obj.addEventListener) {
-        obj.addEventListener(ev, fn, false);
-    }
-    else {
-        obj.attachEvent('on' + ev, fn);
-    }
-}
+}), false;
+
+
+
+lookMusic.addEventListener('click', function() {
+    musicNumber.innerHTML = '';
+    musicNumber.innerHTML = '<ul><li class="list-title">作者:</li><li class="list-title">歌曲名:</li>' +
+        '<li class="list-title">音乐时长:</li><li class="list-title">歌曲信息:</li></ul>';
+
+    $.get('/getAllMusic', function(res) {
+        var fragment = document.createDocumentFragment();
+        for(var i = 0, len = res.length; i < len; i++) {
+            var ul = document.createElement('ul');
+            ul.className = 'listBox';
+            var str = '<li class="music-list">'+res[i].author+'</li><li class="music-list">'+res[i].name+'</li>' +
+                '<li class="music-list">'+res[i].melody.length+'</li><li class="music-list">'+res[i].description+'</li>';
+            ul.innerHTML = str;
+            fragment.appendChild(ul);
+        }
+        melody.appendChild(fragment);
+    });
+
+}, false);
+
+
 
 function removeEvent(obj, ev, fn) {
     if (obj.detachEvent) {
