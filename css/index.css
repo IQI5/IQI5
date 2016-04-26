@@ -1,6 +1,6 @@
 *{
-	padding: 0; 
-	margin: 0; 
+	padding: 0;
+	margin: 0;
 }
 
 .bgImg1, .bgImg2 {
@@ -61,37 +61,37 @@ ul{
 }
 
 #ul-keys li{
-	display: inline-block; 
+	display: inline-block;
 	width: 30px;
-	height: 30px; 
+	height: 30px;
 	line-height: 30px;
 	border-radius: 5px;
 	margin: 20px;
 	color: #fff;
 	font-weight: bold;
-	background-color: #3c3c3c; 
+	background-color: #3c3c3c;
 }
 
 #ul-keys li.highVoice{
 	background-color: #930000;
-	width: 34px; 
-	height: 34px; 
+	width: 34px;
+	height: 34px;
 	line-height: 34px;
 	margin: 18px;
 }
 
 #ul-keys li.middleVoice{
 	background-color: #eac100;
-	width: 34px; 
-	height: 34px; 
+	width: 34px;
+	height: 34px;
 	line-height: 34px;
 	margin: 18px;
 }
 
 #ul-keys li.lowVoice{
 	background-color: #0072e3;
-	width: 34px; 
-	height: 34px; 
+	width: 34px;
+	height: 34px;
 	line-height: 34px;
 	margin: 18px;
 }
