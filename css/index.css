@@ -168,6 +168,36 @@ ul{
 	left: 11px;
 }
 
+#save {
+	position: absolute;
+	width: 600px;
+	height: 450px;
+	top: 50%;
+	left: 50%;
+	margin-top: -225px;
+	margin-left: -300px;
+	background: white;
+	padding: 20px;
+	font-size: 26px;
+	line-height: 40px;
+}
+
+#save fieldset {
+	padding: 20px;
+}
+
+#save input{
+	line-height: 40px;
+	margin: 10px;
+	width: 300px;
+	height: 26px;
+}
+
+#save textarea {
+	margin: 10px;
+	margin-bottom: -10px;
+}
+
 .keys{
 	width: 80%;
 	margin: 20px auto 0;
