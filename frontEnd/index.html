@@ -16,7 +16,7 @@
 	<audio src=""></audio>
 	<div class="header">
 		<button class="musicBtn make_music">制作音乐</button>
-		<button class="musicBtn save_music">保存音乐</button>
+		<button class="musicBtn save_music" disabled = true>保存音乐</button>
 		<button class="musicBtn look_music">查看音乐</button>
 	</div>
 	<div class="melody">
@@ -38,8 +38,19 @@
 		<p class="tip">提示：键盘上 Q -> U 为高音键，A -> J 为中音键，Z -> M 为低音键</p>
 		<div>播放音乐</div>
 	</div>
-	<script src="js/ajax.js" type="text/javascript"></script>
+	<div id="save">
+		<fieldset>
+			<legend>歌曲信息</legend>
+			歌曲标题:<input type="text"><br />
+			作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者:<input type="text"><br />
+			描&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;述:<textarea name="description" id="description" cols="41" rows="10"></textarea>
+			<input  class="save-btn" type="submit" id="submit">
+			<input  class="save-btn" type="button" value = "取消" id="cancel">
+		</fieldset>
+	</div>
+	<!--<script src="frontEnd/js/keyupGetArray.js" type="text/javascript"></script>-->
 	<script src="js/music.js" type="text/javascript"></script>
 	<script src="js/melody.js" type="text/javascript"></script>
-	<script src="js/interface.js" type="text/javascript"></script>
+	<script src="js/eventLogic.js" type="text/javascript"></script>
 </body>
+

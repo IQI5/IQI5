@@ -1,11 +1,12 @@
-// (function(){
-
 	var audio = document.getElementsByTagName("audio")[0];
 	var songTest = [];
 
 	// Music(name, type, melody, beat, player) 
 	//音乐名字，乐器类型（默认"piano"）、简谱、节拍长度（ms）、HTML5 audio元素
     var music = new Music("test1", "piano", songTest, 500, audio);
+
+	var json = {}, arr = [], arr2 = [];
+
 
     /* 单个按键的按下处理函数
 	 * 参数：事件，键代号，ul元素，li的索引，给li的类名
@@ -76,6 +77,9 @@
 			singleKeydown(e, 66, ul_keys, 5, 'lowVoice', 1);
 			singleKeydown(e, 78, ul_keys, 6, 'lowVoice', 1);
 			singleKeydown(e, 77, ul_keys, 7, 'lowVoice', 1);
+
+
+			dealCode(e.keyCode);
 		}; 
 
 		//弹起键盘的响应事件
@@ -110,6 +114,84 @@
 		};
 	}
 
-	//调用事件函数
-	documentEvent();
-// })();
+
+function dealCode(keyCode) {
+	switch(keyCode) {
+		//按键QWERTY
+		case 81: //按键Q
+			addObj('1', '3');
+			break;
+		case 87: //按键W
+			addObj('2', '3');
+			break;
+		case 69: //按键E
+			addObj('3', '3');
+			break;
+		case 82: //按键R
+			addObj('4', '3');
+			break;
+		case 84: //按键T
+			addObj('5', '3');
+			break;
+		case 89: //按键Y
+			addObj('6', '3');
+			break;
+		case 85: //按键U
+			addObj('7', '3');
+			break;
+
+		//按键ASDFOHJ
+		case 65: //按键A
+			addObj('1', '2');
+			break;
+		case 83: //按键S
+			addObj('2', '2');
+			break;
+		case 68:  //按键D
+			addObj('3', '2');
+			break;
+		case 70: //按键F
+			addObj('4', '2');
+			break;
+		case 71: //按键G
+			addObj('5', '2');
+			break;
+		case 72: //按键H
+			addObj('6', '2');
+			break;
+		case 74: //按键J
+			addObj('7', '2');
+			break;
+
+		//按键ZXCVBNM
+		case 90: //按键Z
+			addObj('1', '3');
+			break;
+		case 88: //按键X
+			addObj('2', '3');
+			break;
+		case 67: //按键C
+			addObj('3', '3');
+			break;
+		case 86: //按键V
+			addObj('4', '3');
+			break;
+		case 66: //按键B
+			addObj('5', '3');
+			break;
+		case 78: //按键N
+			addObj('6', '3');
+			break;
+		case 77: //按键M
+			addObj('7', '3');
+			break;
+	}
+}
+
+function addObj(node1, node2) {
+	arr2 = [];
+	arr2.push(node1);
+	arr2.push(node2);
+	arr2.push('1');
+	arr.push(arr2);
+}
