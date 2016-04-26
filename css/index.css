@@ -178,3 +178,22 @@ ul{
 	margin-bottom: 20px;
 	color: #DFD2DA;
 }
+
+.list-title {
+	display: inline-block;
+	width: 100px;
+	text-align: center;
+	margin: 0 66px;
+	color: #fff;
+}
+
+.listBox {
+	margin-top: 10px;
+}
+.music-list {
+	display: inline-block;
+	width: 100px;
+	margin: 0 66px;
+	color: #fff;
+	text-align: center;
+}

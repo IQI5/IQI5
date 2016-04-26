@@ -6,15 +6,15 @@ var pool = mysql.createPool($conf.mysql);
 
 module.exports = {
 	add: function(req, res, next) {
+		var param = req.body;
 		pool.getConnection(function(err, connection) {
-			var param = req.body;
-			connection.query($sql.insert, [/* */], function(err, result) {
+			connection.query($sql.insert, [param.author, param.name, param.description, param.melody], function(err, result) {
 				res.send(result);
 				connection.release();
 			});
 		});
 	},
-	getAll: function(req, res, next) {
+	queryAll: function(req, res, next) {
 		pool.getConnection(function(err, connection) {
 			connection.query($sql.queryAll, function(err, result) {
 				res.send(result);
