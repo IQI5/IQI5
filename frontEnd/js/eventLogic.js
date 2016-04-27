@@ -15,22 +15,21 @@ var header = document.getElementsByClassName('header')[0],
 
 
 var madeflag = true;
-var musicCache;  // 数组  ajax拉取的music数据缓存  
+var musicCache;  // 数组  ajax拉取的music数据缓存
+
+var this_music;
+
 
 
 makeMusic.addEventListener('click', function() {
+    melody.innerHTML = '<p id="music_number"></p>';
+    documentEvent();
+    arr = [];
     if(madeflag) {
         //调用事件函数
-        //.innerHTML = '';
-        documentEvent();
         saveMusic.disabled = false;
         madeflag = false;
         this.innerHTML = '<span>重新制作</span>';
-    }
-    else {
-        documentEvent();
-
-        music_number.innerHTML = '';
     }
 
 }, false);
@@ -48,7 +47,7 @@ lookMusic.addEventListener('click', function() {
 
     ajax.getAllMusic(function(res) {
         musicCache = JSON.parse(res);
-        console.log(res); 
+        //console.log(res);
         var res = JSON.parse(res);
         var fragment = document.createDocumentFragment();
         for(var i = 0, len = res.length; i < len; i++) {
@@ -63,6 +62,7 @@ lookMusic.addEventListener('click', function() {
         }
         melody.appendChild(fragment);
 
+
         // 点击音乐播放事件
         eventUtil.delegate(melody, 'music-list', 'click', function(e) {
             var e = e || window.event;
@@ -71,7 +71,10 @@ lookMusic.addEventListener('click', function() {
             console.log(trg.parentElement);
             console.log(musicCache);
 
-            var this_music = new Music(musicCache[id].name, "piano", JSON.parse(musicCache[id].melody), 500, audio);
+            if(this_music) {
+                this_music.stop();
+            }
+            this_music = new Music(musicCache[id].name, "piano", JSON.parse(musicCache[id].melody), 500, audio);
             this_music.play();
         }); 
     });
@@ -115,6 +118,7 @@ submit.addEventListener('click', function() {
     ajax.uploadMusic(json, function(res) {
         console.log(res);
     });
+    save.style.display = 'none';
 
 }, false);
 
